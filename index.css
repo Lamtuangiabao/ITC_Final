@@ -26,7 +26,7 @@ body::-webkit-scrollbar {
   scroll-snap-type: y mandatory;
   /* tạo vùng cuộn được */
   overflow-y: auto;
-  height: 99%;
+  height: 100%;
   /* Khi bạn đặt height: 100vh, bạn đang ra lệnh cho #container: "Hãy cao bằng đúng cửa sổ trình duyệt, bất kể cha của bạn là ai".Lúc này, #container trở thành một cái khung có chiều cao xác định (ví dụ: 800px).Các thẻ con bên trong (#first_slider, #products) cộng lại cao 200vh (1600px).Vì nội dung (1600px) dài hơn cái khung (800px)  Trình duyệt tạo ra thanh cuộn bên trong #container  scroll-snap có môi trường để hoạt động. */
   /* Khi bạn đặt height: 100%, #container sẽ hỏi thẻ body: "Chủ nhân cao bao nhiêu để tôi cao bằng bấy nhiêu?".Nếu body không có chiều cao cố định (mặc định là height: auto), nó sẽ trả lời: "Ta cao bằng tổng các con của ta".Thế là body dài ra theo #first_slider + #products (thành 200vh). #container lấy 100% của 200vh đó, nên nó cũng dài ra thành 200vh. */
   /* Nếu muốn xài % thì html và body phải là 100% để có chiều cao cố định */
@@ -538,6 +538,9 @@ i {
   width: 7%;
 }
 @media (max-width: 900px) {
+  #container {
+    height: 80%;
+  }
   #products {
     grid-template-areas:
       "box-2 box-2"
