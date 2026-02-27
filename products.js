@@ -70,9 +70,12 @@ search_input.addEventListener("keypress", (e) => {
     let list_product = document.getElementsByClassName("card");
     let product_names = document.getElementsByClassName("product-name");
     //vòng lặp for bên dưới là thể hiện ra các sản phẩm trùng với từ khóa trên thanh tìm kiếm
-    for (let i = 0; i < list_product.length; i++) {
+    for (let i = 0; i < product_names.length; i++) {
+      console.log(product_names[i].innerText);
       if (
-        product_names[i].innerText.includes(search_input_value.toUpperCase())
+        product_names[i].innerText
+          .toUpperCase()
+          .includes(search_input_value.toUpperCase())
       ) {
         list_product[i].style = "display: block";
       } else {
@@ -89,7 +92,12 @@ document.querySelector("#find").addEventListener("click", () => {
   let product_names = document.getElementsByClassName("product-name");
   //vòng lặp for bên dưới là thể hiện ra các sản phẩm trùng với từ khóa trên thanh tìm kiếm
   for (let i = 0; i < list_product.length; i++) {
-    if (product_names[i].innerText.includes(search_input_value.toUpperCase())) {
+    console.log(product_names[i].innerText);
+    if (
+      product_names[i].innerText
+        .toUpperCase()
+        .includes(search_input_value.toUpperCase())
+    ) {
       list_product[i].style = "display: block";
     } else {
       //nếu không có sản phẩm nào trùng lặp thì không thể hiện ra gì hết
