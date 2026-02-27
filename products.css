@@ -1,0 +1,409 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+body {
+  height: 100%; /* Nếu muốn xài % ở #container thì html và body phải là 100% để có chiều cao cố định */
+  width: 100%;
+  background-color: black;
+  color: antiquewhite;
+  font-weight: bold;
+  overflow-x: hidden;
+}
+
+.total {
+  user-select: none;
+  border-radius: 30px 30px 30px 30px;
+  display: grid;
+  grid-template-areas:
+    "box-5_1"
+    " box-5_2"
+    " box-5_2";
+  height: 100%; /* Nếu muốn xài % ở #container thì html và body phải là 100% để có chiều cao cố định */
+  width: 100%;
+}
+
+/* thanh navbar */
+.search {
+  height: 100%; /* Nếu muốn xài % ở #container thì html và body phải là 100% để có chiều cao cố định */
+  width: 100%;
+  display: grid;
+  grid-auto-columns: 25% 55% 10% 10%;
+  grid-auto-flow: column; /* force items to flow horizontally */
+  overflow-x: hidden;
+  background-color: black;
+}
+
+.items {
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.items img {
+  width: 50%;
+  border: 1px solid white;
+}
+
+.items input {
+  all: unset;
+  width: 90%;
+  border-bottom: 1px solid whitesmoke;
+  height: 30%;
+}
+
+.items label {
+  position: absolute;
+  color: #8f908c;
+  transition: transform 1s ease;
+  user-select: none;
+  font-size: large;
+}
+
+input:focus + label,
+input:not(:placeholder-shown) + label {
+  transform: translateX(-20px);
+  transform: translateY(-20px);
+  color: aqua;
+  font-size: x-large;
+}
+
+input:focus {
+  border-bottom: 1px solid Yellow;
+}
+
+.products {
+  height: 100%; /* Nếu muốn xài % ở #container thì html và body phải là 100% để có chiều cao cố định */
+  width: 100%;
+  /* tạo vùng cuộn được */
+  overflow-y: auto;
+  height: 100%;
+  overflow-x: clip;
+  background: radial-gradient(circle, black, #8f908c);
+  border: 1px solid white;
+}
+
+/* tắt bỏ thanh cuộn */
+.products::-webkit-scrollbar {
+  display: none;
+}
+/* /////////////////Các thẻ sẩn phẩm////////////////////////////////////////////////////////////////////////////////////// */
+
+#products {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* chia thành 4 cột và số px là chương trình tự chia để đều hơn  */
+  grid-column-gap: 1em;
+  /* khoảng cách giữa các cột */
+  grid-row-gap: 3em;
+  /*HERE: khoảng cách giữa khung và tất cả nội dung thẻ sản phẩm  */
+  padding: 5%;
+  /* Bẩt lợi khi sử dụng flex wrap:wrap nó sẽ không tự tạo các ô làm sao để lắp đầy các khoảng trống, không tối ưu việc lấp kín khoảng trống giống như repeat() của grid */
+  position: relative;
+}
+
+#products .card {
+  padding: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.7s;
+  background-color: black;
+  border: 1px solid white;
+  /* hiệu ứng khi cuộn đến thì mới xuất hiện  */
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 10% cover 40%;
+  transition: 0.3s ease-in-out;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.1;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+#products .card:hover {
+  transform: translateY(-0.1in);
+}
+
+#products .card .image-container {
+  text-align: center;
+}
+
+#products .card .image-container img {
+  max-width: 100%;
+  object-fit: contain;
+  position: relative;
+  height: 15em;
+  box-shadow: 1em 2em 2.5em rgba(1, 2, 68, 0.08);
+}
+
+#products .card .container {
+  /* có id là products ,class là card, class là container  */
+  padding-top: 1em;
+  color: white;
+  text-align: center;
+}
+
+#products .card .container h5 {
+  font-weight: 500;
+  font-size: 18px;
+  /* fixed height để không bị lệch button Thêm vào giỏ hàng */
+  height: 40px;
+}
+
+#products .card .container h6 {
+  font-weight: 400;
+  font-size: 14px;
+  padding-top: 5px;
+}
+
+#products .card .container button {
+  background-color: white;
+  border: none;
+  border: solid 1px black;
+  margin-top: 14px;
+  padding: 5px 0px;
+  text-transform: uppercase;
+  font-weight: bold;
+  width: 100%;
+  cursor: pointer;
+}
+
+#products .card .container button:hover {
+  background-color: black;
+  color: white;
+}
+
+/* icon filter */
+.filter {
+  background-color: black;
+  cursor: pointer;
+}
+
+/* khung tổng filter  */
+.filter_board {
+  background-color: black;
+  border: 5px solid white;
+  width: 50%;
+  height: 35%;
+  padding: 10px 10px;
+  opacity: 0;
+  position: fixed;
+  top: 50%; /* cách mép trên 50% */
+  left: 50%; /* cách mép trái 50% */
+  transition: 0.3s ease-in-out;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(10%, 1fr));
+}
+.show {
+  animation: fadeblur 1s both;
+}
+
+/* các nút bấm sản phẩm của filter */
+.accessories {
+  /* phải có height bằng px chứ không được % ở các nút con nếu thằng cha sử dụng repeat */
+  height: 40px;
+  margin: 0 10% 0% 10%;
+  transition: 0.3s ease-in-out;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.clicked {
+  background: grey;
+  border: 2px solid aquamarine;
+  box-shadow: #8f908c;
+  transform: translateY(-7px);
+}
+
+/* khung chứa các nút bấm phân loại sản phẩm */
+#type {
+  /* background-color: blue; */
+  border: 1px solid white;
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10%, 1fr));
+  /* minmax ở đây tức là min sẽ là 1 chiều rộng tối thiểu nhưng còn phụ thuộc vào số lượng div bên trong container này là bao nhiêu và width của container là bao nhiêu phải tự canh có đủ không , min là 10% nếu 10 div thì mỗi div sẽ là 10% ,nhưng nếu 12 div thì nó sẽ là 120% thì tràn */
+}
+
+/* ///////////////////////huệu ứng xuất hiện của products */
+@keyframes fadeblur {
+  from {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 100;
+  }
+}
+
+/* giá phân loại:input */
+#price {
+  height: 100%;
+  position: relative;
+  margin-top: 5%;
+  text-align: center;
+}
+
+#price input {
+  all: unset;
+  width: 100%;
+  height: 40%;
+  border-bottom: 1px solid whitesmoke;
+  text-align: center;
+}
+
+#price label {
+  position: absolute;
+  color: #8f908c;
+  transition: transform 0.3s ease;
+  user-select: none;
+  font-size: medium;
+  right: 70%;
+}
+#price input:focus + label,
+#price input:not(:placeholder-shown) + label {
+  transform: translateX(-20px);
+  transform: translateY(-20px);
+  color: aqua;
+  font-size: large;
+}
+
+#price input:focus {
+  border-bottom: 1px solid Yellow;
+}
+/* nút xác nhận của filter */
+#price_confirm {
+  margin-top: 5%;
+  font-weight: bold;
+  height: 60%;
+}
+
+#price_confirm:hover {
+  background-color: black;
+  color: white;
+}
+/* Giỏ hàng  */
+.cart {
+  background-color: black;
+  cursor: pointer;
+  border: 1px solid white;
+}
+
+i {
+  font-size: xx-large;
+  color: white;
+}
+
+/* modal */
+.modal {
+  background-color: black;
+  border: 5px solid white;
+  width: 20%;
+  height: 50%;
+  padding: 10px 10px;
+  position: fixed;
+  top: 50%; /* cách mép trên 50% */
+  left: 50%; /* cách mép trái 50% */
+  transition: 0.3s ease-in-out;
+  opacity: 0;
+  z-index: -1;
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(10%, 1fr));
+  justify-items: center; /* căn ngang */
+  align-items: center; /* căn dọc */
+  /* minmax ở đây tức là min sẽ là 1 chiều rộng tối thiểu nhưng còn phụ thuộc vào số lượng div bên trong container này là bao nhiêu và width của container là bao nhiêu phải tự canh có đủ không , min là 10% nếu 10 div thì mỗi div sẽ là 10% ,nhưng nếu 12 div thì nó sẽ là 120% thì tràn */
+}
+
+.modal img {
+  max-width: 100%; /* không vượt quá chiều rộng modal */
+  max-height: 100%; /* không vượt quá chiều cao modal */
+  object-fit: contain; /* giữ tỷ lệ ảnh, không bị méo */
+  border: 1px solid white;
+}
+
+#modal_input {
+  width: 100%;
+  all: unset;
+  border-bottom: 1px solid whitesmoke;
+  height: 35%;
+  text-align: center;
+}
+
+#modal_name {
+  text-align: center;
+  width: 100%;
+}
+
+#modal_price_tag {
+  width: 100%;
+  text-align: center;
+}
+
+.modal_confirm {
+  font-weight: bold;
+}
+.modal_confirm:hover {
+  background-color: black;
+  color: white;
+}
+
+@media (max-width: 1000px) {
+  .items img {
+    width: 100%;
+  }
+
+  #products {
+    /*HERE: khoảng cách giữa khung và tất cả nội dung thẻ sản phẩm  */
+    padding: 10%;
+  }
+
+  i {
+    font-size: x-large;
+  }
+
+  .accessories {
+    height: 30px;
+  }
+
+  #price label {
+    font-size: small;
+    width: 100%;
+    right: 0%;
+  }
+
+  #price {
+    margin-top: 15%;
+  }
+
+  #price input:focus + label,
+  #price input:not(:placeholder-shown) + label {
+    font-size: medium;
+  }
+
+  #modal_input {
+    width: 90%;
+  }
+
+  .modal {
+    height: 30%;
+    width: fit-content;
+  }
+}

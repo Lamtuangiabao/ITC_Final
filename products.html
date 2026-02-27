@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./products.css" />
+    <!-- lấy icon ở font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Product</title>
+  </head>
+  <body style="background-color: blueviolet">
+    <div class="total" style="grid-area: box-5">
+      <!-- Thanh tìm kiếm tổng:navbar -->
+      <div class="search" style="grid-area: box-5_1">
+        <!-- logo -->
+        <div class="items">
+          <img id="Home" src="./Copilot_20260124_143955.png" alt="" />
+        </div>
+        <!-- Ô nhập tìm kiếm -->
+        <div class="items">
+          <input type="text" id="searching" placeholder=" " />
+          <label>Kiếm tui nè !</label>
+          <div id="find"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+        <!-- logo filter -->
+        <div class="items filter">
+          <i class="fa-solid fa-filter"></i>
+        </div>
+        <!-- Phần kế bên input tìm kiếm  -->
+        <!-- để ở đây để cố định bằng khung của product top:0 để luôn ở đó canh chuẩn -->
+        <div class="filter_board">
+          <div id="type">
+            <button id="ao" class="accessories">
+              <i class="fa-solid fa-shirt fa-lg"></i>
+            </button>
+            <button id="quan" class="accessories">
+              <i class="fa-solid fa-table-columns fa-lg"></i>
+            </button>
+            <button id="khan" class="accessories">
+              <i class="fa-solid fa-toilet-paper fa-lg"></i>
+              <!-- mấy cái i lấy ở trong data.js -->
+            </button>
+            <button id="giay" class="accessories">
+              <i class="fa-solid fa-shoe-prints fa-lg"></i>
+            </button>
+            <button id="vay" class="accessories">
+              <i class="fa-solid fa-person-dress fa-lg"></i>
+            </button>
+          </div>
+          <div id="price">
+            <input type="text" id="price_input" placeholder=" " />
+            <label>Nhập cho tôi 1 cái rá </label>
+          </div>
+          <button id="price_confirm">Xác nhận</button>
+        </div>
+        <!-- Phần kế bên thanh tìm kiếm  -->
+        <!-- logo Giỏ hàng -->
+        <div class="items cart">
+          <a href="./cart.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+      </div>
+      <!-- phần chứa các thẻ sản phẩm  -->
+      <div class="products" style="grid-area: box-5_2">
+        <div id="products">
+          <div class="modal">
+            <img id="modal_img" src="" alt="thay the" />
+            <div id="modal_name">Ten</div>
+            <div id="modal_price_tag">Giá</div>
+            <input id="modal_input" type="text" />
+            <button class="modal_confirm">Xác nhận</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="products.js"></script>
+  </body>
+</html>
