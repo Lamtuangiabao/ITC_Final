@@ -148,7 +148,7 @@ const social = {
 //navbars
 const nav_button = {
   a1: [
-    { href: "#products", innerText: "Product" },
+    { href: "./products.html", innerText: "Product" },
     { href: "./index.html", innerText: "HOME" },
     { href: "./cart.html" },
   ],
@@ -223,7 +223,7 @@ for (let key in carousel) {
 }
 
 let u = 0;
-function showslide() {
+function showslide1() {
   const col2 = document.getElementsByClassName("col2");
   // u == col2.length thì ngay trong vòng lặp vượt điều kiện thì sẽ thoát vòng lặp và không còn display "block " nữa
   for (let i = 0; i < col2.length; i++) {
@@ -233,15 +233,14 @@ function showslide() {
   if (u > col2.length || u == col2.length) {
     u = 0;
   }
-  // im[0].style.width = "500px";
   col2[u].style.display = "block";
   col2[u].classList.add("faded");
   setTimeout(() => {
-    showslide();
+    showslide1();
   }, 2000);
 }
-
-showslide();
+//gọi hàm ra để chạy
+showslide1();
 
 //////////////////////////Products: loop ở dưới tự tạo các nút dựa trên mảng data
 for (let key in data) {
@@ -280,7 +279,7 @@ for (let key in data) {
 
 //khi tạo không sử dụng class mà phải là ClassName
 
-//tạo xuất hiện khi bấm vào
+//tạo xuất hiện hình tương ứng khi bấm vào các nút ở phần Products
 const but = document.getElementsByClassName("box"); //các nút
 const imag = document.getElementsByClassName("item"); //hình ảnh theo sản phẩm của cả 2 khung
 const b1 = document.getElementsByClassName("box1"); //đổi màu nền theo sản phẩm
@@ -308,17 +307,41 @@ for (let i = 0; i < but.length; i++) {
   });
 }
 
+// Làm slide chạy tự động cho các categories ở phần products:
+let p = 0;
+function showslide() {
+  for (let i = 0; i < imag.length; i++) {
+    imag[i].style.display = "none";
+  }
+  ++p;
+  if (p > imag.length / 2 || p == imag.length / 2) {
+    p = 0;
+  }
+  imag[p].style.display = "";
+  imag[p].classList.add("fadeblur");
+  console.log(p);
+  console.log(imag.length);
+  console.log(imag[p + 5]);
+  imag[p + imag.length / 2].style.display = "";
+  imag[p + imag.length / 2].classList.add("fadeblur");
+  setTimeout(() => {
+    showslide();
+  }, 2000);
+}
+//gọi hàm ra để chạy
+showslide();
+
 // redirect-to-products--icon
-const d_a = create(
-  "a",
-  { href: "./products.html" },
-  {
-    i: {
-      className: "fa-solid fa-arrow-right-to-bracket",
-    },
-  },
-);
-document.querySelector(".redirect-to-products").appendChild(d_a);
+// const d_a = create(
+//   "a",
+//   { href: "./products.html" },
+//   {
+//     i: {
+//       className: "fa-solid fa-arrow-right-to-bracket",
+//     },
+//   },
+// );
+// document.querySelector(".redirect-to-products").appendChild(d_a);
 
 //////////////////////////////////collabs slider
 const g = document.querySelectorAll(".groups");

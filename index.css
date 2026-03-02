@@ -39,9 +39,11 @@ body::-webkit-scrollbar {
 #container::-webkit-scrollbar {
   display: none;
 }
+
 div {
   scroll-snap-align: start;
 }
+
 /* //////////////////////////////thanh navbar/////////////////// */
 #nav {
   position: fixed;

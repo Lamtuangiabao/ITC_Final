@@ -85,6 +85,7 @@ search_input.addEventListener("keypress", (e) => {
     }
   }
 });
+
 //nhấp vô icon kính lúp
 document.querySelector("#find").addEventListener("click", () => {
   let search_input_value = document.getElementById("searching").value;
